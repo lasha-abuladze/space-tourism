@@ -61,6 +61,7 @@ body .main-header .navigation {
   padding-top: 130px;
   padding-left: 22px;
   box-sizing: border-box;
+  transition: all 0.5s;
 }
 body .main-header .navigation .header--dec-line {
   display: none;
