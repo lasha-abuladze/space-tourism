@@ -97,11 +97,18 @@ body .main-header .navigation .navigation--list li:first-child {
 body .main-header .navigation .navigation--list li:hover {
   border-right: 3px solid #FFFFFF;
 }
+body .main-header .navigation .navigation--list li .underline {
+  display: none;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  transform: translateY(40px);
+}
 body .main-header .close-open-btns {
   z-index: 3;
 }
 body .main-header .close-open-btns .btn--menu img {
-  width: px;
+  width: 24px;
   height: 24px;
 }
 body .main-section {
@@ -165,6 +172,98 @@ body .main-section .section--home .btn--explore::after {
 body .main-section .section--home .btn--explore:hover::after {
   visibility: visible;
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+@media (min-width: 710px) {
+  body .main-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px;
+    padding-left: 40px;
+    box-sizing: border-box;
+    position: absolute;
+    overflow-x: clip;
+  }
+  body .main-header .logo {
+    width: 40px;
+    height: 40px;
+  }
+  body .main-header .navigation {
+    position: static;
+    transform: translateX(0px);
+    min-height: fit-content !important;
+    padding: 40px;
+    width: fit-content;
+  }
+  body .main-header .navigation .navigation--list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+  }
+  body .main-header .navigation .navigation--list li {
+    border: none;
+    box-sizing: border-box;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  body .main-header .navigation .navigation--list li a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 4px;
+    color: #FFFFFF;
+    font-size: 14px;
+  }
+  body .main-header .navigation .navigation--list li a .section--number {
+    font-weight: bold;
+  }
+  body .main-header .navigation .navigation--list li:first-child {
+    border: none;
+  }
+  body .main-header .navigation .navigation--list li:first-child .underline {
+    opacity: 1;
+  }
+  body .main-header .navigation .navigation--list li:hover {
+    border: none;
+  }
+  body .main-header .navigation .navigation--list li .underline {
+    display: block;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  body .main-header .navigation .navigation--list li:hover .underline {
+    opacity: 1;
+  }
+  body .main-header .close-open-btns {
+    display: none;
+  }
+  body .main-section .section--home {
+    background-image: url(./assets/home/background-home-tablet.jpg);
+    padding-top: 230px;
+  }
+  body .main-section .section--home .subtitle {
+    font-size: 18px;
+    margin-bottom: 50px;
+  }
+  body .main-section .section--home .headline {
+    font-size: 100px;
+    margin-bottom: 75px;
+  }
+  body .main-section .section--home .paragraph {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 120px;
+  }
+  body .main-section .section--home .btn--explore {
+    width: 150px;
+    height: 150px;
+    font-size: 18px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
