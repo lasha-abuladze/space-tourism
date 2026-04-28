@@ -73,7 +73,6 @@ body {
     color: $color--blue-light;
     font-family: $font--Barlow;
     letter-spacing: 1.5px;
-    // min-height: 100vh;
 
 
     .main-header {
@@ -167,7 +166,6 @@ body {
     }
 
     .main-section {
-        height: 100vh;
 
         .section--home {
             background-image: url(./assets/home/background-home-mobile.jpg);
@@ -357,8 +355,6 @@ body {
 
             }
         }
-
-
     }
 
 
