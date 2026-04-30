@@ -84,6 +84,10 @@ body {
         position: absolute;
         overflow-x: clip;
 
+        .header--dec-line {
+            display: none;
+        }
+
         .logo {
             width: 40px;
             height: 40px;
@@ -103,10 +107,6 @@ body {
             padding-left: 22px;
             box-sizing: border-box;
             transition: all 0.5s;
-
-            .header--dec-line {
-                display: none;
-            }
 
             .navigation--list {
                 @include flex-column();
@@ -254,9 +254,6 @@ body {
             width: 100%;
             padding: 0px;
             padding-left: 40px;
-            box-sizing: border-box;
-            position: absolute;
-            overflow-x: clip;
 
             .logo {
                 width: 40px;
@@ -361,8 +358,49 @@ body {
 }
 
 
-@media (min-width: 1020px) {
-    
+@media (min-width: 1380px) {
+
+    body {
+        .main-header {
+            padding-left: 64px;
+
+            .header--dec-line {
+                display: block;
+                width: 40%;
+                height: 3px;
+                background-color: $color--white;
+                position: absolute;
+                z-index: 4;
+                left: 10%;
+                opacity: 0.3;
+            }
+            
+            .logo {
+                width: 48px;
+                height: 48px;
+            }
+
+            .navigation {
+                padding: 64px;
+                position: relative;
+                width: 56%;
+
+                .navigation--list {
+                    gap: 50px;
+                    justify-content: end;
+
+                    li {
+                        max-width: fit-content;
+                        a {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
 }
 
 
