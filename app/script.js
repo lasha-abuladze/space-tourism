@@ -3,16 +3,14 @@
 const btnsNavigationContainer = document.querySelector(`.close-open-btns`);
 const btnsNavigation = document.querySelectorAll(`.btn--menu`);
 const navigation = document.querySelector(`.navigation`);
+const sections = document.querySelectorAll(`.section`)
 
-const mainection = document.querySelector(`.main-section`);
+// const mainection = document.querySelector(`.main-section`);
 
-
-
-
-mainection.style.height = `${document.documentElement.scrollHeight}px`;
+sections.forEach(el => el.style.height = `${document.documentElement.scrollHeight}px`);
 
 window.addEventListener(`resize`, () => {
-    mainection.style.height = `${document.documentElement.scrollHeight}px`
+    sections.forEach(el => el.style.height = `${document.documentElement.scrollHeight}px`);
 })
 
 
