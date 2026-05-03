@@ -56,6 +56,7 @@ body h5 {
   justify-content: center;
   gap: 20px;
   font-size: 18px;
+  color: #FFFFFF;
 }
 body h5 span {
   color: rgba(255, 255, 255, 0.5);
@@ -191,6 +192,7 @@ body .main-section .section--home .btn--explore:hover::after {
 }
 body .main-section .section--destination {
   background-image: url(./assets/destination/background-destination-mobile.jpg);
+  padding-left: 40px;
 }
 body .main-section .section--destination figure .planet-img {
   width: 150px;
@@ -210,10 +212,11 @@ body .main-section .section--destination figure figcaption .planets-list li {
 }
 body .main-section .section--destination figure figcaption .planets-list li a {
   display: block;
-  color: #FFFFFF;
+  color: #D0D6F9;
   text-transform: uppercase;
   font-size: 14px;
   margin-bottom: 15px;
+  transition: all 0.3s;
 }
 body .main-section .section--destination figure figcaption .planets-list li .underline--planet-name {
   width: 100%;
@@ -222,8 +225,14 @@ body .main-section .section--destination figure figcaption .planets-list li .und
   opacity: 0;
   transition: all 0.3s;
 }
+body .main-section .section--destination figure figcaption .planets-list li:hover a {
+  color: #FFFFFF;
+}
 body .main-section .section--destination figure figcaption .planets-list li:hover .underline--planet-name {
   opacity: 1;
+}
+body .main-section .section--destination figure figcaption .planets-list li:first-child a {
+  color: #FFFFFF;
 }
 body .main-section .section--destination figure figcaption .planets-list li:first-child .underline--planet-name {
   width: 100%;
@@ -266,6 +275,18 @@ body .main-section .section--destination figure figcaption .container--distance-
 }
 
 @media (min-width: 710px) {
+  body .section {
+    padding-top: 230px;
+  }
+  body .section .paragraph {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  body .section h5 {
+    max-width: fit-content;
+    font-size: 20px;
+    margin-bottom: 70px;
+  }
   body .main-header {
     display: flex;
     flex-direction: row;
@@ -332,7 +353,6 @@ body .main-section .section--destination figure figcaption .container--distance-
   }
   body .main-section .section--home {
     background-image: url(./assets/home/background-home-tablet.jpg);
-    padding-top: 230px;
   }
   body .main-section .section--home .subtitle {
     font-size: 18px;
@@ -342,9 +362,7 @@ body .main-section .section--destination figure figcaption .container--distance-
     font-size: 100px;
     margin-bottom: 75px;
   }
-  body .main-section .section--home .paragraph {
-    font-size: 16px;
-    line-height: 24px;
+  body .main-section .section--home .about-web {
     margin-bottom: 120px;
   }
   body .main-section .section--home .btn--explore {
@@ -352,8 +370,31 @@ body .main-section .section--destination figure figcaption .container--distance-
     height: 150px;
     font-size: 18px;
   }
+  body .main-section .section--destination {
+    background-image: url(./assets/destination/background-destination-tablet.jpg);
+  }
+  body .main-section .section--destination figure .planet-img {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 70px;
+  }
+  body .main-section .section--destination figure figcaption .container--distance-duration {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+  }
 }
 @media (min-width: 1380px) {
+  body .section {
+    padding: 0px 13%;
+    padding-top: 250px;
+    text-align: left;
+  }
+  body .section h5 {
+    font-size: 22px;
+  }
   body .main-header {
     padding-left: 64px;
   }
@@ -392,9 +433,6 @@ body .main-section .section--destination figure figcaption .container--distance-
     align-items: center;
     justify-content: space-between;
     background-image: url(./assets/home/background-home-desktop.jpg);
-    padding: 0px 13%;
-    padding-top: 250px;
-    text-align: left;
   }
   body .main-section .section--home .subtitle {
     font-size: 20px;
@@ -409,6 +447,30 @@ body .main-section .section--destination figure figcaption .container--distance-
   body .main-section .section--home .btn--explore {
     width: 170px;
     height: 170px;
+  }
+  body .main-section .section--destination {
+    padding-left: 64px;
+    text-align: center;
+  }
+  body .main-section .section--destination figure {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  body .main-section .section--destination figure .planet-img {
+    width: 480px;
+    height: 480px;
+    margin: 0px;
+  }
+  body .main-section .section--destination figure figcaption .planets-list {
+    gap: 30px;
+  }
+  body .main-section .section--destination figure figcaption .planets-list li a {
+    font-size: 16px;
+  }
+  body .main-section .section--destination figure figcaption .planet-name {
+    font-size: 75px;
   }
 }
 
