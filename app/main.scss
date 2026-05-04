@@ -364,6 +364,64 @@ body {
             }
         }
 
+        .section--meet-crew {
+            background-image: url(./assets/crew/background-crew-mobile.jpg);
+            padding-left: 40px;
+
+            figure {
+                @include flex-column();
+
+                .hero-img {
+                    width: 270px;
+                    order: 2;
+                }
+
+                figcaption {
+                    // order: 1;
+                    margin-bottom: 50px;
+
+                    h1 {
+                        color: $color--white;
+                        font-size: 25px;
+                        text-transform: uppercase;
+                        font-family: $font--Bellefair;
+                        margin-bottom: 25px;
+
+                        span {
+                            display: block;
+
+                            &:first-child {
+                                color: rgba( $color--white, 0.5);
+                                font-size: 20px;
+                                margin-bottom: 10px;
+                            }
+                        }
+                    }
+
+                    .about-hero {
+                        margin-bottom: 60px;
+                    }
+
+                    .slider-dots {
+                        @include flex-row();
+                        justify-content: center;
+                        gap: 10px;
+                        li {
+                            width: 7px;
+                            height: 7px;
+                            background-color: rgba($color--white, 0.5);
+                            border-radius: 50%;
+                            cursor: pointer;
+
+                            &:first-child {
+                                background-color: $color--white;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
 
     }
 
