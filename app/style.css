@@ -436,6 +436,25 @@ body .main-section .section--meet-crew figure figcaption .slider-dots li:first-c
     justify-content: center;
     gap: 100px;
   }
+  body .main-section .section--meet-crew {
+    background-image: url(./assets/crew/background-crew-tablet.jpg);
+  }
+  body .main-section .section--meet-crew figure .hero-img {
+    width: 400px;
+  }
+  body .main-section .section--meet-crew figure figcaption {
+    margin-bottom: 70px;
+  }
+  body .main-section .section--meet-crew figure figcaption h1 {
+    font-size: 30px;
+  }
+  body .main-section .section--meet-crew figure figcaption h1 span:first-child {
+    font-size: 25px;
+  }
+  body .main-section .section--meet-crew figure figcaption .slider-dots li {
+    width: 9px;
+    height: 9px;
+  }
 }
 @media (min-width: 1380px) {
   body .section {
@@ -522,6 +541,32 @@ body .main-section .section--meet-crew figure figcaption .slider-dots li:first-c
   }
   body .main-section .section--destination figure figcaption .planet-name {
     font-size: 75px;
+  }
+  body .main-section .section--meet-crew {
+    background-image: url(./assets/crew/background-crew-desktop.jpg);
+    padding-left: 64px;
+  }
+  body .main-section .section--meet-crew figure {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  body .main-section .section--meet-crew figure .hero-img {
+    width: 480px;
+  }
+  body .main-section .section--meet-crew figure figcaption h1 {
+    font-size: 35px;
+  }
+  body .main-section .section--meet-crew figure figcaption h1 span:first-child {
+    font-size: 30px;
+  }
+  body .main-section .section--meet-crew figure figcaption .slider-dots {
+    justify-content: start;
+  }
+  body .main-section .section--meet-crew figure figcaption .slider-dots li {
+    width: 10px;
+    height: 10px;
   }
 }
 
