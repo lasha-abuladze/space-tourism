@@ -669,6 +669,14 @@ body {
                     }
                 }
             }
+
+            .section--technology {
+                background-image: url(./assets/technology/background-technology-tablet.jpg);
+
+                h5 {
+                    margin-left: 40px;
+                }
+            }
         }
     }
 
@@ -756,7 +764,6 @@ body {
             }
 
             .section--destination {
-                padding-left: 64px;
                 text-align: center;
                 figure {
                     @include flex-row();
@@ -793,7 +800,6 @@ body {
 
             .section--meet-crew {
                 background-image: url(./assets/crew/background-crew-desktop.jpg);
-                padding-left: 64px;
 
                 figure {
                     @include flex-row();
@@ -818,6 +824,48 @@ body {
                             li {
                                 width: 10px;
                                 height: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .section--technology {
+                h5 {
+                    margin-left: 13%;
+                }
+
+                figure {
+                    @include flex-row();
+                    justify-content: space-evenly;
+                    img {
+                        order: 2;
+                        width: 600px;
+                        height: 500px;
+                    }
+
+                    figcaption {
+                        @include flex-row();
+                        gap: 20px;
+
+                        .slider {
+                            @include flex-column();
+                        }
+
+                        div {
+                            h1 {
+                                font-size: 35px;
+                                span {
+                                    &:first-child {
+                                        font-size: 30px;
+                                    }
+                                }
+                            }
+
+                            .about-event {
+                                padding: 0px;
+                                font-size: 18px;
+                                
                             }
                         }
                     }

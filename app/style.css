@@ -509,6 +509,12 @@ body .main-section .section--technology figure figcaption div .about-event {
     width: 9px;
     height: 9px;
   }
+  body .main-section .section--technology {
+    background-image: url(./assets/technology/background-technology-tablet.jpg);
+  }
+  body .main-section .section--technology h5 {
+    margin-left: 40px;
+  }
 }
 @media (min-width: 1380px) {
   body .section {
@@ -573,7 +579,6 @@ body .main-section .section--technology figure figcaption div .about-event {
     height: 170px;
   }
   body .main-section .section--destination {
-    padding-left: 64px;
     text-align: center;
   }
   body .main-section .section--destination figure {
@@ -598,7 +603,6 @@ body .main-section .section--technology figure figcaption div .about-event {
   }
   body .main-section .section--meet-crew {
     background-image: url(./assets/crew/background-crew-desktop.jpg);
-    padding-left: 64px;
   }
   body .main-section .section--meet-crew figure {
     display: flex;
@@ -621,6 +625,41 @@ body .main-section .section--technology figure figcaption div .about-event {
   body .main-section .section--meet-crew figure figcaption .slider-dots li {
     width: 10px;
     height: 10px;
+  }
+  body .main-section .section--technology h5 {
+    margin-left: 13%;
+  }
+  body .main-section .section--technology figure {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  body .main-section .section--technology figure img {
+    order: 2;
+    width: 600px;
+    height: 500px;
+  }
+  body .main-section .section--technology figure figcaption {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  body .main-section .section--technology figure figcaption .slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  body .main-section .section--technology figure figcaption div h1 {
+    font-size: 35px;
+  }
+  body .main-section .section--technology figure figcaption div h1 span:first-child {
+    font-size: 30px;
+  }
+  body .main-section .section--technology figure figcaption div .about-event {
+    padding: 0px;
+    font-size: 18px;
   }
 }
 
