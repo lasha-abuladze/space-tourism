@@ -423,6 +423,73 @@ body {
 
         }
 
+        .section--technology {
+            background-image: url(./assets/technology/background-technology-mobile.jpg);
+            padding-left: 0;
+            padding-right: 0;
+
+            figure {
+                img {
+                    width: 100%;
+                    margin-bottom: 32px;
+
+                }
+
+                figcaption {
+
+                    .slider {
+                        @include flex-row();
+                        justify-content: center;
+                        gap: 10px;
+                        margin-bottom: 40px;
+
+                        li {
+                            width: 40px;
+                            height: 40px;
+                            border: 2px solid rgba($color--white, 0.5);
+                            border-radius: 50%;
+                            @include flex-row();
+                            justify-content: center;
+                            font-family: $font--Bellefair;
+                            font-size: 16px;
+                            color: $color--white;
+                            font-weight: bold;
+
+                            &:first-child {
+                                border: 2px solid $color--white;
+                                background-color: $color--white;
+                                color: $color--blue;
+                            }
+                        }
+                    }
+
+                    div {
+                        h1 {
+                            color: $color--white;
+                            font-size: 25px;
+                            text-transform: uppercase;
+                            font-family: $font--Bellefair;
+                            margin-bottom: 25px;
+
+                            span {
+                                display: block;
+
+                                &:first-child {
+                                    color: rgba( $color--white, 0.5);
+                                    font-size: 20px;
+                                    margin-bottom: 10px;
+                                }
+                            }
+                        }
+
+                        .about-event {
+                            padding: 0px 31px;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
 
