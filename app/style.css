@@ -106,6 +106,9 @@ body .main-header .navigation .navigation--list {
   gap: 40px;
   text-transform: uppercase;
 }
+body .main-header .navigation .navigation--list .li-active {
+  border-right: 3px solid #FFFFFF;
+}
 body .main-header .navigation .navigation--list li {
   border-right: 3px solid none;
   box-sizing: border-box;
@@ -123,9 +126,6 @@ body .main-header .navigation .navigation--list li a {
 }
 body .main-header .navigation .navigation--list li a .section--number {
   font-weight: bold;
-}
-body .main-header .navigation .navigation--list li:first-child {
-  border-right: 3px solid #FFFFFF;
 }
 body .main-header .navigation .navigation--list li:hover {
   border-right: 3px solid #FFFFFF;
@@ -418,6 +418,12 @@ body .main-section .section--technology figure figcaption div .about-event {
     align-items: center;
     gap: 25px;
   }
+  body .main-header .navigation .navigation--list .li-active {
+    border: none;
+  }
+  body .main-header .navigation .navigation--list .li-active .underline {
+    opacity: 1;
+  }
   body .main-header .navigation .navigation--list li {
     border: none;
     box-sizing: border-box;
@@ -435,12 +441,6 @@ body .main-section .section--technology figure figcaption div .about-event {
   }
   body .main-header .navigation .navigation--list li a .section--number {
     font-weight: bold;
-  }
-  body .main-header .navigation .navigation--list li:first-child {
-    border: none;
-  }
-  body .main-header .navigation .navigation--list li:first-child .underline {
-    opacity: 1;
   }
   body .main-header .navigation .navigation--list li:hover {
     border: none;

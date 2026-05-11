@@ -147,6 +147,10 @@ body {
                 gap: 40px;
                 text-transform: uppercase;
 
+                .li-active {
+                    border-right: 3px solid $color--white;
+                }
+
                 li {
                     border-right: 3px solid none;
                     box-sizing: border-box;
@@ -167,9 +171,6 @@ body {
                         }
                     }
 
-                    &:first-child {
-                        border-right: 3px solid $color--white;
-                    }
 
                     &:hover{
                         border-right: 3px solid $color--white;
@@ -541,6 +542,14 @@ body {
                     @include flex-row();
                     gap: 25px;
 
+                    .li-active {
+                            border: none;
+
+                            .underline {
+                                opacity: 1;
+                            }
+                    }
+
                     li {
                         border: none;
                         box-sizing: border-box;
@@ -560,13 +569,13 @@ body {
                             }
                         }
 
-                        &:first-child {
-                            border: none;
+                        // &:first-child {
+                        //     border: none;
 
-                            .underline {
-                                opacity: 1;
-                            }
-                        }
+                        //     .underline {
+                        //         opacity: 1;
+                        //     }
+                        // }
 
                         &:hover {
                             border: none;
