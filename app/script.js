@@ -9,15 +9,34 @@ const navigation = document.querySelector(`.navigation`);
 const sections = document.querySelectorAll(`.section`);
 const navLi = document.querySelectorAll(`.nav-li`);
 
+const planetsList = document.querySelector(`.planets-list`);
+const planetsNameLi = document.querySelectorAll(`.planets-list--li`);
+
+const planetNameAtags = document.querySelectorAll(`.planet-name--inList`);
+planetNameAtags.forEach(el => {
+    el.addEventListener(`click`, (e) => {
+        e.preventDefault();
+    })
+})
+
+const planetImgHTNL = document.querySelector(`.planet-img`);
+const planetNameHTML = document.querySelector(`.planet-name`);
+const aboutPlanetHTML = document.querySelector(`.about-planet`);
+const distanceHTML = document.querySelector(`.distance`);
+const durationHTML = document.querySelector(`.duration`);
+
+
+
 
 let sectionName;
-// let data
+let data;
+let destinationObj;
 
-// const getData = function() {
-//     fetch(`./app/data.json`).then(res => res.json()).then( d => {
-//         data = d;
-//     });
-// }
+const getData = function() {
+    fetch(`./app/data.json`).then(res => res.json()).then( d => {
+        data = d;
+    });
+}
 
 getData();
 
@@ -40,14 +59,51 @@ btnExplore.addEventListener(`click`, () => {
         if(!el.classList.contains(`display-none`)) el.classList.add(`display-none`);
         if(el.dataset.sectionTitle === sectionName) el.classList.remove(`display-none`);
     })
+    sections.forEach(el => el.style.height = `${document.documentElement.scrollHeight}px`);
 
     navLi.forEach(el => {
         if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
         if(el.dataset.sectionTitle === sectionName) el.classList.add(`li-active`);
     })
 
-    // if(!data) alert(`something went wrong ...  try again`);
-    // if(data) console.log(data);
+    if(!data) alert(`something went wrong ...  try again`);
+
+    if(data) {
+        console.log(data)
+        destinationObj = data.destinations;
+        console.log(destinationObj)
+    }
+})
+
+
+
+planetsList.addEventListener(`click`, (e) => {
+
+    let planetName
+
+    if(!e.target.closest(`.planet-name--inList`)) return;
+
+    if(e.target.closest(`.planet-name--inList`)) {
+        planetName = e.target.closest(`.planet-name--inList`).textContent;
+        planetsNameLi.forEach(el => {
+            if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
+        });
+        e.target.closest(`.planets-list--li`).classList.add(`li-active`);
+    }
+
+    console.log(planetName);
+
+    destinationObj.forEach(el => {
+
+        if(planetName.toUpperCase() === el.name.toUpperCase()) {
+            planetImgHTNL.src = `./app/assets/destination/image-${planetName.toLowerCase()}.png`;
+            planetNameHTML.textContent = `${el.name}`;
+            aboutPlanetHTML.textContent = `${el.description}`;
+            distanceHTML.textContent = `${el.distance}`;
+            durationHTML.textContent = `${el.travel}`;
+        }
+    })
+
 })
 
 
