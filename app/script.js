@@ -87,11 +87,11 @@ const updatePlanetUI = function() {
 const updateCrewUI = function() {
 
     const crewslider = document.querySelector(`.slider-dots`);
-
     const crewHeroImg = document.querySelector(`.hero-img`);
     const crewHeroRole = document.querySelector(`.hero-rank`);
     const crewHeroName = document.querySelector(`.hero-name`);
     const crewHeroBio = document.querySelector(`.about-hero`);
+    const sliderDots = document.querySelectorAll(`.slider-dot`);
 
     let indexOfCrewMember;
 
@@ -99,12 +99,13 @@ const updateCrewUI = function() {
     crewslider.addEventListener(`click`, (e) => {
 
         if(!e.target.closest(`.slider-dot`)) return;
-
         if(e.target.closest(`.slider-dot`)) {
-            console.log(e.target)
-
             indexOfCrewMember = e.target.dataset.heroOrder;
+            sliderDots.forEach(el => {
+                if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
+            })
 
+            e.target.classList.add(`li-active`);
         }
 
         crewHeroImg.src = `${dataOBJ[indexOfCrewMember].images.png}`
@@ -116,6 +117,34 @@ const updateCrewUI = function() {
 
 
 }
+
+const updateTechnologyUI = function() {
+
+    const technologySlider = document.querySelector(`.slider`);
+    const technologyImg = document.querySelector(`.technology-img`);
+    const technologyName = document.querySelector(`.event-name`);
+    const technologyAbout = document.querySelector(`.about-event`);
+    const technologySliderLi = document.querySelectorAll(`.technology-slider--li`);
+
+    let indexOfTechnology;
+
+
+    technologySlider.addEventListener(`click`, (e) => {
+        if(!e.target.closest(`.technology-slider--li`)) return;
+        if(e.target.closest(`.technology-slider--li`)) {
+            indexOfTechnology = e.target.dataset.technologyOrder;
+            technologySliderLi.forEach(el => {
+                if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
+            })
+            technologySliderLi[indexOfTechnology].classList.add(`li-active`);
+        }
+
+        technologyImg.src = `${dataOBJ[indexOfTechnology].images.portrait}`;
+        technologyName.textContent = `${dataOBJ[indexOfTechnology].name}`;
+        technologyAbout.textContent = `${dataOBJ[indexOfTechnology].description}`;
+
+    })
+} 
 
 
 
@@ -150,7 +179,7 @@ navigation.addEventListener(`click`, (e) => {
 
         dataOBJ = data[sectionName];
 
-        xxx();
+        updateUI();
     }
 
 })
@@ -158,13 +187,17 @@ navigation.addEventListener(`click`, (e) => {
 
 
 
-const xxx = function() {
+const updateUI = function() {
     if(sectionName === `destination`) {
         updatePlanetUI();
     }
 
     if(sectionName === `crew`) {
         updateCrewUI();
+    }
+
+    if(sectionName === `technology`) {
+        updateTechnologyUI();
     }
 }
 

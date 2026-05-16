@@ -314,15 +314,15 @@ body .main-section .section--meet-crew figure figcaption .slider-dots {
   justify-content: center;
   gap: 10px;
 }
+body .main-section .section--meet-crew figure figcaption .slider-dots .li-active {
+  background-color: #FFFFFF !important;
+}
 body .main-section .section--meet-crew figure figcaption .slider-dots li {
   width: 7px;
   height: 7px;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   cursor: pointer;
-}
-body .main-section .section--meet-crew figure figcaption .slider-dots li:first-child {
-  background-color: #FFFFFF;
 }
 body .main-section .section--technology {
   background-image: url(./assets/technology/background-technology-mobile.jpg);
@@ -341,6 +341,11 @@ body .main-section .section--technology figure figcaption .slider {
   gap: 10px;
   margin-bottom: 40px;
 }
+body .main-section .section--technology figure figcaption .slider .li-active {
+  border: 2px solid #FFFFFF;
+  background-color: #FFFFFF;
+  color: #0B0D17;
+}
 body .main-section .section--technology figure figcaption .slider li {
   width: 40px;
   height: 40px;
@@ -354,11 +359,6 @@ body .main-section .section--technology figure figcaption .slider li {
   font-size: 16px;
   color: #FFFFFF;
   font-weight: bold;
-}
-body .main-section .section--technology figure figcaption .slider li:first-child {
-  border: 2px solid #FFFFFF;
-  background-color: #FFFFFF;
-  color: #0B0D17;
 }
 body .main-section .section--technology figure figcaption div h1 {
   color: #FFFFFF;
