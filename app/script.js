@@ -19,18 +19,109 @@ planetNameAtags.forEach(el => {
 
 
 
+class App {
 
-let sectionName;
-let data;
-let dataOBJ;
+    #data;
+    #sectionName;
+    #dataOBJ;
+    #index;
 
-const getData = function() {
-    fetch(`./app/data.json`).then(res => res.json()).then( d => {
-        data = d;
-    });
+    constructor() {
+        this.#getData();
+        this.#toggleMenu();
+        this.#navigateToSections();
+
+        this.#updatePlanetUI();
+    }
+
+
+    // toggles the navigation menu and button visibility on click
+    #toggleMenu() {
+        btnsNavigationContainer.addEventListener(`click`, (e) => {
+            btnsNavigation.forEach(el => el.classList.toggle(`display-none`));
+            navigation.classList.toggle(`navigation--closed`);
+        })
+    }
+
+    /// gets data from json 
+    #getData() {
+        fetch(`./app/data.json`).then(res => res.json()).then( d => {
+            this.#data = d;
+        });
+    }
+
+    // updates the page UI to display the selected section
+    #navigateToSections() {
+
+        navigation.addEventListener(`click`, (e) => {
+
+            if(!this.#data) alert(`Something went wrong... Try again`);
+            
+            if(this.#data) {
+                if(!e.target.closest(`.nav-a`)) return;
+
+                if(e.target.closest(`.nav-a`)) {
+
+                    this.#sectionName = e.target.closest(`.nav-a`).dataset.sectionTitle;
+
+                    sections.forEach(el => {
+                        if(!el.classList.contains(`display-none`)) el.classList.add(`display-none`);
+                        if(el.dataset.sectionTitle === this.#sectionName) el.classList.remove(`display-none`);
+                    })
+
+                    sections.forEach(el => {
+                        if(el.dataset.sectionTitle === this.#sectionName) el.style.height = `${document.documentElement.scrollHeight}px`;
+                    })
+
+                    navLi.forEach(el => {
+                        if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
+                    })
+                    e.target.closest(`.nav-li`).classList.add(`li-active`);
+                }
+            }
+
+            this.#dataOBJ = this.#data[this.#sectionName];
+
+        })
+    }
+
+    #updatePlanetUI() {
+        const planetsList = document.querySelector(`.planets-list`);
+        const planetsNameLi = document.querySelectorAll(`.planets-list--li`);
+        const planetImgHTML = document.querySelector(`.planet-img`);
+        const planetNameHTML = document.querySelector(`.planet-name`);
+        const aboutPlanetHTML = document.querySelector(`.about-planet`);
+        const distanceHTML = document.querySelector(`.distance`);
+        const durationHTML = document.querySelector(`.duration`);
+
+
+        planetsList.addEventListener(`click`, (e) => {
+
+            if(!e.target.closest(`.planets-list--li`)) return;
+            if(e.target.closest(`.planets-list--li`)) {
+                this.#index = e.target.closest(`.planets-list--li`).dataset.planetOrder;
+            }
+
+            planetsNameLi.forEach(el => {
+                if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`)
+            })
+            planetsNameLi[this.#index].classList.add(`li-active`);
+
+            planetImgHTML.src = `${this.#dataOBJ[this.#index].images.png}`;
+            planetNameHTML.textContent = `${this.#dataOBJ[this.#index].name}`;
+            aboutPlanetHTML.textContent = `${this.#dataOBJ[this.#index].description}`;
+            distanceHTML.textContent = `${this.#dataOBJ[this.#index].distance}`;
+            durationHTML.textContent = `${this.#dataOBJ[this.#index].travel}`;
+
+        })
+
+    }
+
+
 }
 
-getData();
+const spaceTourism = new App();
+
 
 
 sections.forEach(el => el.style.height = `${document.documentElement.scrollHeight}px`);
@@ -39,50 +130,7 @@ window.addEventListener(`resize`, () => {
     sections.forEach(el => el.style.height = `${document.documentElement.scrollHeight}px`);
 })
 
-btnsNavigationContainer.addEventListener(`click`, (e) => {
-    btnsNavigation.forEach(el => el.classList.toggle(`display-none`));
-    navigation.classList.toggle(`navigation--closed`);
-})
 
-
-
-const updatePlanetUI = function() {
-
-    const planetsList = document.querySelector(`.planets-list`);
-    const planetsNameLi = document.querySelectorAll(`.planets-list--li`);
-    const planetImgHTNL = document.querySelector(`.planet-img`);
-    const planetNameHTML = document.querySelector(`.planet-name`);
-    const aboutPlanetHTML = document.querySelector(`.about-planet`);
-    const distanceHTML = document.querySelector(`.distance`);
-    const durationHTML = document.querySelector(`.duration`);
-
-    planetsList.addEventListener(`click`, (e) => {
-
-        let planetName
-
-        if(!e.target.closest(`.planet-name--inList`)) return;
-
-        if(e.target.closest(`.planet-name--inList`)) {
-            planetName = e.target.closest(`.planet-name--inList`).textContent;
-            planetsNameLi.forEach(el => {
-                if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
-            });
-            e.target.closest(`.planets-list--li`).classList.add(`li-active`);
-        }
-
-        dataOBJ.forEach(el => {
-
-            if(planetName.toUpperCase() === el.name.toUpperCase()) {
-                planetImgHTNL.src = `./app/assets/destination/image-${planetName.toLowerCase()}.png`;
-                planetNameHTML.textContent = `${el.name}`;
-                aboutPlanetHTML.textContent = `${el.description}`;
-                distanceHTML.textContent = `${el.distance}`;
-                durationHTML.textContent = `${el.travel}`;
-            }
-        })
-
-    })
-}
 
 const updateCrewUI = function() {
 
@@ -99,6 +147,7 @@ const updateCrewUI = function() {
     crewslider.addEventListener(`click`, (e) => {
 
         if(!e.target.closest(`.slider-dot`)) return;
+        
         if(e.target.closest(`.slider-dot`)) {
             indexOfCrewMember = e.target.dataset.heroOrder;
             sliderDots.forEach(el => {
@@ -145,44 +194,6 @@ const updateTechnologyUI = function() {
 
     })
 } 
-
-
-
-
-navigation.addEventListener(`click`, (e) => {
-
-
-    if(!data) alert(`something went wrong....  try again`);
-
-    if(data) {
-
-        if(!e.target.closest(`.nav-a`)) return;
-
-        if(e.target.closest(`.nav-a`)) {
-
-            sectionName = e.target.closest(`.nav-a`).dataset.sectionTitle;
-
-            sections.forEach(el => {
-                if(!el.classList.contains(`display-none`)) el.classList.add(`display-none`);
-                if(el.dataset.sectionTitle === sectionName) el.classList.remove(`display-none`);
-            })
-
-            sections.forEach(el => {
-                if(el.dataset.sectionTitle === sectionName) el.style.height = `${document.documentElement.scrollHeight}px`;
-            })
-
-            navLi.forEach(el => {
-                if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
-            })
-            e.target.closest(`.nav-li`).classList.add(`li-active`);
-        }
-
-        dataOBJ = data[sectionName];
-
-        updateUI();
-    }
-
-})
 
 
 
