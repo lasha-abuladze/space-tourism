@@ -9,8 +9,6 @@ const navigation = document.querySelector(`.navigation`);
 const sections = document.querySelectorAll(`.section`);
 const navLi = document.querySelectorAll(`.nav-li`);
 
-const planetsList = document.querySelector(`.planets-list`);
-const planetsNameLi = document.querySelectorAll(`.planets-list--li`);
 
 const planetNameAtags = document.querySelectorAll(`.planet-name--inList`);
 planetNameAtags.forEach(el => {
@@ -19,18 +17,12 @@ planetNameAtags.forEach(el => {
     })
 })
 
-const planetImgHTNL = document.querySelector(`.planet-img`);
-const planetNameHTML = document.querySelector(`.planet-name`);
-const aboutPlanetHTML = document.querySelector(`.about-planet`);
-const distanceHTML = document.querySelector(`.distance`);
-const durationHTML = document.querySelector(`.duration`);
-
 
 
 
 let sectionName;
 let data;
-let destinationObj;
+let dataOBJ;
 
 const getData = function() {
     fetch(`./app/data.json`).then(res => res.json()).then( d => {
@@ -52,85 +44,153 @@ btnsNavigationContainer.addEventListener(`click`, (e) => {
     navigation.classList.toggle(`navigation--closed`);
 })
 
-btnExplore.addEventListener(`click`, () => {
-    sectionName = `destination`;
-
-    sections.forEach(el => {
-        if(!el.classList.contains(`display-none`)) el.classList.add(`display-none`);
-        if(el.dataset.sectionTitle === sectionName) el.classList.remove(`display-none`);
-    })
-    sections.forEach(el => el.style.height = `${document.documentElement.scrollHeight}px`);
-
-    navLi.forEach(el => {
-        if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
-        if(el.dataset.sectionTitle === sectionName) el.classList.add(`li-active`);
-    })
-
-    if(!data) alert(`something went wrong ...  try again`);
-
-    if(data) {
-        console.log(data)
-        destinationObj = data.destinations;
-        console.log(destinationObj)
-    }
-})
 
 
+const updatePlanetUI = function() {
 
-planetsList.addEventListener(`click`, (e) => {
+    const planetsList = document.querySelector(`.planets-list`);
+    const planetsNameLi = document.querySelectorAll(`.planets-list--li`);
+    const planetImgHTNL = document.querySelector(`.planet-img`);
+    const planetNameHTML = document.querySelector(`.planet-name`);
+    const aboutPlanetHTML = document.querySelector(`.about-planet`);
+    const distanceHTML = document.querySelector(`.distance`);
+    const durationHTML = document.querySelector(`.duration`);
 
-    let planetName
+    planetsList.addEventListener(`click`, (e) => {
 
-    if(!e.target.closest(`.planet-name--inList`)) return;
+        let planetName
 
-    if(e.target.closest(`.planet-name--inList`)) {
-        planetName = e.target.closest(`.planet-name--inList`).textContent;
-        planetsNameLi.forEach(el => {
-            if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
-        });
-        e.target.closest(`.planets-list--li`).classList.add(`li-active`);
-    }
+        if(!e.target.closest(`.planet-name--inList`)) return;
 
-    console.log(planetName);
-
-    destinationObj.forEach(el => {
-
-        if(planetName.toUpperCase() === el.name.toUpperCase()) {
-            planetImgHTNL.src = `./app/assets/destination/image-${planetName.toLowerCase()}.png`;
-            planetNameHTML.textContent = `${el.name}`;
-            aboutPlanetHTML.textContent = `${el.description}`;
-            distanceHTML.textContent = `${el.distance}`;
-            durationHTML.textContent = `${el.travel}`;
+        if(e.target.closest(`.planet-name--inList`)) {
+            planetName = e.target.closest(`.planet-name--inList`).textContent;
+            planetsNameLi.forEach(el => {
+                if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
+            });
+            e.target.closest(`.planets-list--li`).classList.add(`li-active`);
         }
+
+        dataOBJ.forEach(el => {
+
+            if(planetName.toUpperCase() === el.name.toUpperCase()) {
+                planetImgHTNL.src = `./app/assets/destination/image-${planetName.toLowerCase()}.png`;
+                planetNameHTML.textContent = `${el.name}`;
+                aboutPlanetHTML.textContent = `${el.description}`;
+                distanceHTML.textContent = `${el.distance}`;
+                durationHTML.textContent = `${el.travel}`;
+            }
+        })
+
+    })
+}
+
+const updateCrewUI = function() {
+
+    const crewslider = document.querySelector(`.slider-dots`);
+
+    const crewHeroImg = document.querySelector(`.hero-img`);
+    const crewHeroRole = document.querySelector(`.hero-rank`);
+    const crewHeroName = document.querySelector(`.hero-name`);
+    const crewHeroBio = document.querySelector(`.about-hero`);
+
+    let indexOfCrewMember;
+
+
+    crewslider.addEventListener(`click`, (e) => {
+
+        if(!e.target.closest(`.slider-dot`)) return;
+
+        if(e.target.closest(`.slider-dot`)) {
+            console.log(e.target)
+
+            indexOfCrewMember = e.target.dataset.heroOrder;
+
+        }
+
+        crewHeroImg.src = `${dataOBJ[indexOfCrewMember].images.png}`
+        crewHeroRole.textContent = `${dataOBJ[indexOfCrewMember].role}`;
+        crewHeroName.textContent = `${dataOBJ[indexOfCrewMember].name}`;
+        crewHeroBio.textContent = `${dataOBJ[indexOfCrewMember].bio}`;
+        sections.forEach(el => el.style.height = `${document.documentElement.scrollHeight}px`);
     })
 
-})
+
+}
 
 
 
 
 navigation.addEventListener(`click`, (e) => {
 
-    if(!e.target.closest(`.nav-a`)) return;
 
-    if(e.target.closest(`.nav-a`)) {
+    if(!data) alert(`something went wrong....  try again`);
 
-        sectionName = e.target.closest(`.nav-a`).dataset.sectionTitle;
+    if(data) {
 
-        sections.forEach(el => {
-            if(!el.classList.contains(`display-none`)) el.classList.add(`display-none`);
-            if(el.dataset.sectionTitle === sectionName) el.classList.remove(`display-none`);
-        })
+        if(!e.target.closest(`.nav-a`)) return;
 
-        sections.forEach(el => {
-            if(el.dataset.sectionTitle === sectionName) el.style.height = `${document.documentElement.scrollHeight}px`;
-        })
+        if(e.target.closest(`.nav-a`)) {
 
-        navLi.forEach(el => {
-            if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
-        })
-        e.target.closest(`.nav-li`).classList.add(`li-active`);
+            sectionName = e.target.closest(`.nav-a`).dataset.sectionTitle;
+
+            sections.forEach(el => {
+                if(!el.classList.contains(`display-none`)) el.classList.add(`display-none`);
+                if(el.dataset.sectionTitle === sectionName) el.classList.remove(`display-none`);
+            })
+
+            sections.forEach(el => {
+                if(el.dataset.sectionTitle === sectionName) el.style.height = `${document.documentElement.scrollHeight}px`;
+            })
+
+            navLi.forEach(el => {
+                if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
+            })
+            e.target.closest(`.nav-li`).classList.add(`li-active`);
+        }
+
+        dataOBJ = data[sectionName];
+
+        xxx();
     }
+
 })
 
 
+
+
+const xxx = function() {
+    if(sectionName === `destination`) {
+        updatePlanetUI();
+    }
+
+    if(sectionName === `crew`) {
+        updateCrewUI();
+    }
+}
+
+
+
+
+
+// btnExplore.addEventListener(`click`, () => {
+//     sectionName = `destination`;
+
+//     sections.forEach(el => {
+//         if(!el.classList.contains(`display-none`)) el.classList.add(`display-none`);
+//         if(el.dataset.sectionTitle === sectionName) el.classList.remove(`display-none`);
+//     })
+//     sections.forEach(el => el.style.height = `${document.documentElement.scrollHeight}px`);
+
+//     navLi.forEach(el => {
+//         if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
+//         if(el.dataset.sectionTitle === sectionName) el.classList.add(`li-active`);
+//     })
+
+//     if(!data) alert(`something went wrong ...  try again`);
+
+//     if(data) {
+//         console.log(data)
+//         dataOBJ = data.destinations;
+//         console.log(dataOBJ)
+//     }
+// })
