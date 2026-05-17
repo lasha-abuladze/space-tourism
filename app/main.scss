@@ -476,6 +476,7 @@ body {
                             font-size: 16px;
                             color: $color--white;
                             font-weight: bold;
+                            cursor: pointer;
                         }
                     }
 
@@ -700,6 +701,12 @@ body {
                 h5 {
                     margin-left: 40px;
                 }
+
+                figure {
+                    img {
+                        height: 600px;
+                    }
+                }
             }
         }
     }
@@ -865,6 +872,7 @@ body {
                     img {
                         order: 2;
                         width: 600px;
+                        height: 600px;
                         height: 500px;
                     }
 

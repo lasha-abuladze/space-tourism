@@ -30,8 +30,7 @@ class App {
         this.#getData();
         this.#toggleMenu();
         this.#navigateToSections();
-
-        this.#updatePlanetUI();
+        this.#startExploring();
     }
 
 
@@ -81,6 +80,7 @@ class App {
             }
 
             this.#dataOBJ = this.#data[this.#sectionName];
+            this.#updateSliderUI();
 
         })
     }
@@ -117,6 +117,79 @@ class App {
 
     }
 
+    #updateCrewUI() {
+        const crewslider = document.querySelector(`.slider-dots`);
+        const crewHeroImg = document.querySelector(`.hero-img`);
+        const crewHeroRole = document.querySelector(`.hero-rank`);
+        const crewHeroName = document.querySelector(`.hero-name`);
+        const crewHeroBio = document.querySelector(`.about-hero`);
+        const sliderDots = document.querySelectorAll(`.slider-dot`);
+
+        crewslider.addEventListener(`click`, (e) => {
+
+            if(!e.target.closest(`.slider-dot`)) return;
+            
+            if(e.target.closest(`.slider-dot`)) {
+                this.#index = e.target.dataset.heroOrder;
+                sliderDots.forEach(el => {
+                    if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
+                })
+
+                e.target.classList.add(`li-active`);
+            }
+
+            crewHeroImg.src = `${this.#dataOBJ[this.#index].images.png}`
+            crewHeroRole.textContent = `${this.#dataOBJ[this.#index].role}`;
+            crewHeroName.textContent = `${this.#dataOBJ[this.#index].name}`;
+            crewHeroBio.textContent = `${this.#dataOBJ[this.#index].bio}`;
+            sections.forEach(el => el.style.height = `${document.documentElement.scrollHeight}px`);
+        })
+
+    }
+
+    #updateTechnologyUI() {
+        const technologySlider = document.querySelector(`.slider`);
+        const technologyImg = document.querySelector(`.technology-img`);
+        const technologyName = document.querySelector(`.event-name`);
+        const technologyAbout = document.querySelector(`.about-event`);
+        const technologySliderLi = document.querySelectorAll(`.technology-slider--li`);
+
+        technologySlider.addEventListener(`click`, (e) => {
+            if(!e.target.closest(`.technology-slider--li`)) return;
+            if(e.target.closest(`.technology-slider--li`)) {
+                this.#index = e.target.dataset.technologyOrder;
+                technologySliderLi.forEach(el => {
+                    if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
+                })
+                technologySliderLi[this.#index].classList.add(`li-active`);
+            }
+
+            technologyImg.src = `${this.#dataOBJ[this.#index].images.portrait}`;
+            technologyName.textContent = `${this.#dataOBJ[this.#index].name}`;
+            technologyAbout.textContent = `${this.#dataOBJ[this.#index].description}`;
+
+        })
+    }
+
+    #updateSliderUI() {
+        if(this.#sectionName === `destination`) this.#updatePlanetUI();
+        if(this.#sectionName === `crew`) this.#updateCrewUI();
+        if(this.#sectionName === `technology`) this.#updateTechnologyUI();
+    }
+
+    #startExploring() {
+
+        btnExplore.addEventListener(`click`, () => {
+            sections.forEach(el => {
+                if(!el.classList.contains(`display-none`)) el.classList.add(`display-none`);
+                if(el.classList.contains(`section--destination`)) el.classList.remove(`display-none`);
+            })
+            this.#sectionName = `destination`;
+            this.#dataOBJ = this.#data[this.#sectionName];
+            this.#updatePlanetUI();
+        })
+    }
+
 
 }
 
@@ -130,111 +203,3 @@ window.addEventListener(`resize`, () => {
     sections.forEach(el => el.style.height = `${document.documentElement.scrollHeight}px`);
 })
 
-
-
-const updateCrewUI = function() {
-
-    const crewslider = document.querySelector(`.slider-dots`);
-    const crewHeroImg = document.querySelector(`.hero-img`);
-    const crewHeroRole = document.querySelector(`.hero-rank`);
-    const crewHeroName = document.querySelector(`.hero-name`);
-    const crewHeroBio = document.querySelector(`.about-hero`);
-    const sliderDots = document.querySelectorAll(`.slider-dot`);
-
-    let indexOfCrewMember;
-
-
-    crewslider.addEventListener(`click`, (e) => {
-
-        if(!e.target.closest(`.slider-dot`)) return;
-        
-        if(e.target.closest(`.slider-dot`)) {
-            indexOfCrewMember = e.target.dataset.heroOrder;
-            sliderDots.forEach(el => {
-                if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
-            })
-
-            e.target.classList.add(`li-active`);
-        }
-
-        crewHeroImg.src = `${dataOBJ[indexOfCrewMember].images.png}`
-        crewHeroRole.textContent = `${dataOBJ[indexOfCrewMember].role}`;
-        crewHeroName.textContent = `${dataOBJ[indexOfCrewMember].name}`;
-        crewHeroBio.textContent = `${dataOBJ[indexOfCrewMember].bio}`;
-        sections.forEach(el => el.style.height = `${document.documentElement.scrollHeight}px`);
-    })
-
-
-}
-
-const updateTechnologyUI = function() {
-
-    const technologySlider = document.querySelector(`.slider`);
-    const technologyImg = document.querySelector(`.technology-img`);
-    const technologyName = document.querySelector(`.event-name`);
-    const technologyAbout = document.querySelector(`.about-event`);
-    const technologySliderLi = document.querySelectorAll(`.technology-slider--li`);
-
-    let indexOfTechnology;
-
-
-    technologySlider.addEventListener(`click`, (e) => {
-        if(!e.target.closest(`.technology-slider--li`)) return;
-        if(e.target.closest(`.technology-slider--li`)) {
-            indexOfTechnology = e.target.dataset.technologyOrder;
-            technologySliderLi.forEach(el => {
-                if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
-            })
-            technologySliderLi[indexOfTechnology].classList.add(`li-active`);
-        }
-
-        technologyImg.src = `${dataOBJ[indexOfTechnology].images.portrait}`;
-        technologyName.textContent = `${dataOBJ[indexOfTechnology].name}`;
-        technologyAbout.textContent = `${dataOBJ[indexOfTechnology].description}`;
-
-    })
-} 
-
-
-
-
-const updateUI = function() {
-    if(sectionName === `destination`) {
-        updatePlanetUI();
-    }
-
-    if(sectionName === `crew`) {
-        updateCrewUI();
-    }
-
-    if(sectionName === `technology`) {
-        updateTechnologyUI();
-    }
-}
-
-
-
-
-
-// btnExplore.addEventListener(`click`, () => {
-//     sectionName = `destination`;
-
-//     sections.forEach(el => {
-//         if(!el.classList.contains(`display-none`)) el.classList.add(`display-none`);
-//         if(el.dataset.sectionTitle === sectionName) el.classList.remove(`display-none`);
-//     })
-//     sections.forEach(el => el.style.height = `${document.documentElement.scrollHeight}px`);
-
-//     navLi.forEach(el => {
-//         if(el.classList.contains(`li-active`)) el.classList.remove(`li-active`);
-//         if(el.dataset.sectionTitle === sectionName) el.classList.add(`li-active`);
-//     })
-
-//     if(!data) alert(`something went wrong ...  try again`);
-
-//     if(data) {
-//         console.log(data)
-//         dataOBJ = data.destinations;
-//         console.log(dataOBJ)
-//     }
-// })
